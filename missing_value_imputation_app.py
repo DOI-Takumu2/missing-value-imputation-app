@@ -38,7 +38,7 @@ st.markdown("""
 # 黄緑色の背景で方法を表示
 st.markdown("""
 <div style="background-color: #dfffdf; padding: 10px; border-radius: 5px; line-height: 1.8;">
-<b>このアプリは以下の方法でCSVファイルの欠損値を補完します：</b><br>
+<b>このアプリは以下の方法でCSVファイルの欠損値を補完します:</b><br>
 1. 段階的な平均値で補完<br>
 2. ベイズ統計を用いて補完<br>
 3. 回帰分析を用いて補完
