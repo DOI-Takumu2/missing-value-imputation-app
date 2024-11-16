@@ -15,9 +15,10 @@ st.markdown("""
 
 ---
 
-作成者：**土居拓務（DOI, Takumu）**
+<div style="text-align: right;">
+作成者：<strong>土居拓務（DOI, Takumu）</strong>
+</div>
 """, unsafe_allow_html=True)
-
 
 # 黄緑色の背景で方法を表示
 st.markdown("""
