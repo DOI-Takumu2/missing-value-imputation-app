@@ -44,6 +44,7 @@ st.markdown("""
 
 # 使用手順を黒線で囲む
 # 使用手順を黒線で囲む
+# 使用手順を黒線で囲む
 st.markdown("""
 <div style="border: 2px solid black; padding: 10px; margin: 10px; border-radius: 5px; line-height: 1.8;">
 <b>使用手順:</b><br>
