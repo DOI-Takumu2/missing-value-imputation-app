@@ -8,14 +8,15 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 
 # アプリの基本設定
-st.title("🧩 欠損値処理アプリ")
 st.markdown("""
 **データ分析を円滑に進めるための欠損値補完ツール**  
 <small style="font-size: 12px; color: gray;">Missing Value Imputation Tool for Data Analysis.</small>
 
 ---
 
+<div style="text-align: right;">
 作成者：**土居拓務（DOI, Takumu）**
+</div>
 """, unsafe_allow_html=True)
 
 # 黄緑色の背景で方法を表示
