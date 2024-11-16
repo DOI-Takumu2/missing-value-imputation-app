@@ -7,29 +7,18 @@ from sklearn.linear_model import BayesianRidge
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
-# タイトルと画像を横並びで表示
-col1, col2 = st.columns([4, 1])  # 左右の比率を指定
-
-with col1:
-    st.title("🧩 欠損値処理アプリ")
-    st.markdown("""
-    **データ分析を円滑に進めるための欠損値補完ツール**  
-    <small style="font-size: 12px; color: gray;">Missing Value Imputation Tool for Data Analysis.</small>
-    """, unsafe_allow_html=True)
-
-with col2:
-    st.image("https://raw.githubusercontent.com/DOI-Takumu2/missing-value-imputation-app/main/TAKUMU.png", use_column_width=True)
-
-# 区切り線
-st.markdown("---")
-
-# 作成者の名前を中央揃えで表示
+# アプリの基本設定
+st.title("🧩 欠損値処理アプリ")
 st.markdown("""
-<div style="text-align: center;">
-作成者：**土居拓務（DOI, Takumu）**
+**データ分析を円滑に進めるための欠損値補完ツール**  
+<small style="font-size: 12px; color: gray;">Missing Value Imputation Tool for Data Analysis.</small>
+
+<div style="text-align: right;">
+作成者：<strong>土居拓務（DOI, Takumu）</strong>
 </div>
-""", unsafe_allow_html=True)
-</div>
+
+---
+
 """, unsafe_allow_html=True)
 
 # 黄緑色の背景で方法を表示
