@@ -13,6 +13,10 @@ st.markdown("""
 **データ分析を円滑に進めるための欠損値補完ツール**  
 <small style="font-size: 12px; color: gray;">Missing Value Imputation Tool for Data Analysis.</small>
 
+<div style="text-align: right;">
+作成者：<strong>土居拓務（DOI, Takumu）</strong>
+</div>
+""", unsafe_allow_html=True)
 ---
 
 <div style="text-align: right;">
