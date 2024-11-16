@@ -99,10 +99,14 @@ def regression_fill(df):
                 st.write(f"{col} の補完をスキップ（十分な特徴量がありません）")
                 continue
 
+ # モデルの学習と予測
             model = LinearRegression()
-            model.fit(X_train, y_train)
-            filled_df.loc[test_data.index, col] = model.predict(X_test)
-    return filled_df
+            try:
+                model.fit(X_train, y_train)
+                filled_df.loc[test_data.index, col] = model.predict(X_test)
+            except Exception as e:
+                st.error(f"列 '{col}' の補完中にエラーが発生しました: {str(e)}")
+                continue
 
 # ファイルアップロード部分
 uploaded_file = st.file_uploader("📂 CSVファイルをアップロードしてください", type="csv")
