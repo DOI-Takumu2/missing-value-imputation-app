@@ -7,8 +7,6 @@ from sklearn.linear_model import BayesianRidge
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
-import streamlit as st
-
 # タイトルと画像を横並びで表示
 col1, col2 = st.columns([4, 1])  # 左右の比率を指定
 
@@ -29,6 +27,8 @@ st.markdown("---")
 st.markdown("""
 <div style="text-align: center;">
 作成者：**土居拓務（DOI, Takumu）**
+</div>
+""", unsafe_allow_html=True)
 </div>
 """, unsafe_allow_html=True)
 ---
