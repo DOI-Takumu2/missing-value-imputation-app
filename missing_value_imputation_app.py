@@ -31,9 +31,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 </div>
 """, unsafe_allow_html=True)
----
-
-""", unsafe_allow_html=True)
 
 # 黄緑色の背景で方法を表示
 st.markdown("""
