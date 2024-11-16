@@ -81,6 +81,11 @@ def bayesian_fill(df):
 
 def regression_fill(df):
     filled_df = df.copy()
+
+    # IterativeImputerで全体の欠損値を一時的に補完
+    imputer = IterativeImputer(estimator=BayesianRidge(), max_iter=10, random_state=0)
+    temp_df = pd.DataFrame(imputer.fit_transform(filled_df), columns=filled_df.columns)
+    
     for col in df.columns:
         if filled_df[col].isnull().any():
             train_data = filled_df[filled_df[col].notnull()]
