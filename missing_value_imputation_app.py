@@ -44,10 +44,9 @@ st.markdown("""
 st.markdown("""
 ---
 
-### 引用について
-本アプリをご利用いただく際には、以下の文献を引用いただけますと幸いです：
+本アプリをご利用いただく際には、以下の表記を適切な場所にご記載いただけますと幸いです：
 
-**引用例:**
+**引用:**
 DOI, Takumu (2024). *Missing Value Imputation Tool for Data Analysis*.
 """, unsafe_allow_html=True)
 
