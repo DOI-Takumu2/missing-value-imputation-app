@@ -6,8 +6,6 @@ from sklearn.impute import IterativeImputer
 from sklearn.linear_model import BayesianRidge
 from sklearn.linear_model import LinearRegression
 import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 # アプリの基本設定
 st.title("🧩 欠損値処理アプリ")
@@ -40,31 +38,44 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
----  
+st.markdown("""
+---
+
 **引用**:  
 DOI, Takumu (2024). Missing Value Imputation Tool for Data Analysis.
-""")
+""", unsafe_allow_html=True)
+
+# 補完処理関数
+def stepwise_fill(df):
+    # 段階的平均値処理
+    pass
+
+def bayesian_fill(df):
+    imputer = IterativeImputer(estimator=BayesianRidge(), max_iter=10, random_state=0)
+    filled_df = pd.DataFrame(imputer.fit_transform(df), columns=df.columns)
+    return filled_df
+
+def regression_fill(df):
+    # 回帰分析による補完
+    pass
 
 # ファイルアップロード部分
 uploaded_file = st.file_uploader("📂 CSVファイルをアップロードしてください", type="csv")
 
 if uploaded_file:
     st.write("アップロードされたファイルを処理中...")
-    # CSVを読み込む
     df = pd.read_csv(uploaded_file)
     st.write("アップロードされたデータ:")
     st.dataframe(df)
-    st.write("補完方法を選択してください:")
 
-    # 補完方法の選択
     method = st.selectbox("補完方法を選択", ["段階的な平均値", "ベイズ統計", "回帰分析"])
     if st.button("補完を実行"):
         if method == "段階的な平均値":
-            st.write("段階的な平均値で補完を行います...")
-            # 段階的な平均値の補完処理を実装
+            filled_df = stepwise_fill(df)
         elif method == "ベイズ統計":
-            st.write("ベイズ統計を用いた補完を行います...")
-            # ベイズ統計の補完処理を実装
+            filled_df = bayesian_fill(df)
         elif method == "回帰分析":
-            st.write("回帰分析を用いた補完を行います...")
-            # 回帰分析の補完処理を実装
+            filled_df = regression_fill(df)
+        
+        st.write("補完結果:")
+        st.dataframe(filled_df)
