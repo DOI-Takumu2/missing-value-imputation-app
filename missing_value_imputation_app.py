@@ -110,6 +110,27 @@ if uploaded_file:
 
     method = st.selectbox("補完方法を選択", ["段階的な平均値", "ベイズ統計", "回帰分析"])
 
+    # ボタンが押されたら補完処理を実行
+    if st.button("補完を実行"):
+        if method == "段階的な平均値":
+            filled_df = stepwise_fill(df)
+        elif method == "ベイズ統計":
+            filled_df = bayesian_fill(df)
+        elif method == "回帰分析":
+            filled_df = regression_fill(df)
+        
+        st.write("補完結果:")
+        st.dataframe(filled_df)
+
+        # ダウンロード機能
+        csv = filled_df.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="📥 補完結果をダウンロード",
+            data=csv,
+            file_name="imputed_data.csv",
+            mime="text/csv",
+        )
+
 # 各補完方法の説明を折りたたみ可能なセクションに表示
 with st.expander("📖 各補完方法の説明を見る"):
     st.markdown("""
@@ -150,24 +171,3 @@ with st.expander("📖 各補完方法の説明を見る"):
     - 説明変数が不足している場合、補完精度が低下する可能性があります。
     - データに外れ値がある場合、モデルがそれに引きずられ、補完値が異常になることがあります。
     """)
-
-    # ボタンが押されたら補完処理を実行
-    if st.button("補完を実行"):
-        if method == "段階的な平均値":
-            filled_df = stepwise_fill(df)
-        elif method == "ベイズ統計":
-            filled_df = bayesian_fill(df)
-        elif method == "回帰分析":
-            filled_df = regression_fill(df)
-        
-        st.write("補完結果:")
-        st.dataframe(filled_df)
-
-        # ダウンロード機能
-        csv = filled_df.to_csv(index=False).encode('utf-8')
-        st.download_button(
-            label="📥 補完結果をダウンロード",
-            data=csv,
-            file_name="imputed_data.csv",
-            mime="text/csv",
-        )
