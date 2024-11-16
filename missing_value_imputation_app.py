@@ -7,11 +7,20 @@ from sklearn.linear_model import BayesianRidge
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
+import streamlit as st
+
+# タイトルと画像を横並びで表示
+col1, col2 = st.columns([4, 1])  # カラムの比率を調整
+
 # アプリの基本設定
-st.title("🧩 欠損値処理アプリ")
-st.markdown("""
-**データ分析を円滑に進めるための欠損値補完ツール**  
-<small style="font-size: 12px; color: gray;">Missing Value Imputation Tool for Data Analysis.</small>
+with col1:
+    st.title("🧩 欠損値処理アプリ")
+    st.markdown("""
+    **データ分析を円滑に進めるための欠損値補完ツール**  
+    <small style="font-size: 12px; color: gray;">Missing Value Imputation Tool for Data Analysis.</small>
+
+with col2:
+    st.image("https://raw.githubusercontent.com/DOI-Takumu2/missing-value-imputation-app/main/TAKUMU.png", use_column_width=True)
 
 <div style="text-align: right;">
 作成者：<strong>土居拓務（DOI, Takumu）</strong>
