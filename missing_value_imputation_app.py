@@ -14,8 +14,6 @@ pip install --upgrade scikit-learn
 import sklearn
 print(sklearn.__version__)
 
-!pip install streamlit pyngrok
-
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 
