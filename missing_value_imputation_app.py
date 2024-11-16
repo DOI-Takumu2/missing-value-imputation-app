@@ -8,9 +8,15 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 
 # アプリの基本設定
+# アプリの基本設定
+st.title("🧩 欠損値処理アプリ")
 st.markdown("""
-**データ分析を円滑に進めるための欠損値補完ツール**  
-<small style="font-size: 12px; color: gray;">Missing Value Imputation Tool for Data Analysis.</small>
+**データ分析を円滑に進めるための欠損値補完ツール**
+<small>Missing Value Imputation Tool for Data Analysis.</small>
+
+---
+
+                                               作成者：土居拓務（DOI, Takumu）
 
 ---
 
