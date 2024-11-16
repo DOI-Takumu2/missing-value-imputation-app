@@ -82,24 +82,35 @@ def bayesian_fill(df):
 def regression_fill(df):
     filled_df = df.copy()
 
-    # IterativeImputerで全体の欠損値を一時的に補完
+    # IterativeImputerで全体を一時的に補完
     imputer = IterativeImputer(estimator=BayesianRidge(), max_iter=10, random_state=0)
     temp_df = pd.DataFrame(imputer.fit_transform(filled_df), columns=filled_df.columns)
-    
+
     for col in df.columns:
         if filled_df[col].isnull().any():
-            train_data = filled_df[filled_df[col].notnull()]
-            test_data = filled_df[filled_df[col].isnull()]
+            train_data = temp_df[filled_df[col].notnull()]
+            test_data = temp_df[filled_df[col].isnull()]
             X_train = train_data.drop(columns=[col])
             y_train = train_data[col]
             X_test = test_data.drop(columns=[col])
 
-            # 特徴量がない場合はスキップ
-            if X_train.shape[1] == 0:
-                st.write(f"{col} の補完をスキップ（十分な特徴量がありません）")
+            # 条件を満たさない場合はスキップ
+            if X_train.shape[1] == 0 or len(X_train) < 5:
+                st.warning(f"列 '{col}' の補完をスキップしました（十分な説明変数やデータがありません）")
                 continue
 
- # モデルの学習と予測
+            missing_rate = filled_df[col].isnull().sum() / len(filled_df[col])
+            if missing_rate > 0.5:
+                st.warning(f"列 '{col}' の補完をスキップしました（欠損率が高すぎます）")
+                continue
+
+            # データの正規化
+            from sklearn.preprocessing import StandardScaler
+            scaler = StandardScaler()
+            X_train = scaler.fit_transform(X_train)
+            X_test = scaler.transform(X_test)
+
+            # モデルの学習と予測
             model = LinearRegression()
             try:
                 model.fit(X_train, y_train)
@@ -107,6 +118,7 @@ def regression_fill(df):
             except Exception as e:
                 st.error(f"列 '{col}' の補完中にエラーが発生しました: {str(e)}")
                 continue
+    return filled_df
 
 # ファイルアップロード部分
 uploaded_file = st.file_uploader("📂 CSVファイルをアップロードしてください", type="csv")
